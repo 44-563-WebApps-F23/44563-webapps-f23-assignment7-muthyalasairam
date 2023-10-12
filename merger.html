@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        merger.html
+    </title>
+    <style>
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            background-color: red;
+        }
+
+        .flex-container>div {
+            /*div children of the flex container*/
+            background-color: #f1f1f1;
+            margin: 10px;
+            padding: 20px;
+            font-size: 30px;
+        }
+
+        /* Responsive layout */
+        @media (max-width: 600px) {
+            .flex-container {
+                flex-direction: column;
+                background-color: green;
+            }
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <h1>SaiRam Muthyala builds a merger</h1>
+    <input type="text" id="ele" name="input_element">
+    <div class="flex-container" id="target">
+        <div class="merger">row item 1</div>
+        <div class="merger">row item 2</div>
+        <div class="merger">row item 3</div>
+    </div>
+    <button style="color: rgb(42, 22, 172);" onclick="makeNewDiv()">Add end</button>
+    <button style="color: rgb(50, 64, 216);" onclick="addFront()">Add Front</button>
+    <button style="color: rgb(65, 37, 223);" onclick="remove()">Remove</button>
+</body>
+<script>
+    function makeNewDiv() {
+        /* make the div and its text */
+        let element = document.createElement("div")
+        element.innerHTML = document.getElementById("ele").value;
+        element.style.color = "pink"
+        element.className = "merger";
+        /* add it to the container */
+        let container = document.getElementById('target')
+        container.appendChild(element)
+
+    }
+
+    function addFront() {
+        let element = document.createElement("div");
+        element.innerHTML = document.getElementById("ele").value;
+        element.className = "merger";
+        let container = document.getElementById('target')
+        container.insertBefore(element, container.firstChild);
+    }
+    function remove() {
+        let mergerItems = document.getElementsByClassName("merger");
+        let l = mergerItems.length;
+        if (l > 0) {
+            let mid = Math.floor(l / 2);
+            let container = document.getElementById("target");
+            container.removeChild(mergerItems[mid]);
+        }
+    }
+
+</script>
+
+</html>
